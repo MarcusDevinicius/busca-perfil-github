@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscar Perfil GitHub</title>
+
+    <link rel="stylesheet" href="CSS/style.css">
+
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <main id="root"></main>
+
+    <script type="text/babel">
+        const LogoGH = () => {
+            return <div id="logo-container">
+                <img src="src/imgs/logo-nome-GH.png" alt="Logo do GitHub seguido pelo o nome." />
+                </div>
+        }
+
+        const InputContainer = () => {
+            return <form id="form">
+            <div id="input-container">
+                <input id="input-user" type="text" placeholder="Digite um usuário do Github"/>
+                <div id="lupa-container" onClick={buscarPerfil}>
+                    <img id="lupa" src="src/imgs/lupa-search.svg" alt="Ícone de uma lupa de pesquisa."/>
+                </div>
+            </div>
+        </form>
+        }
+
+        function buscarPerfil() {
+            const input = document.getElementById('input-user');
+            const userName = input.value;
+            fetch(`https://api.github.com/users/${{userName}.userName}`)
+            .then(response => {
+                const jsonFile = response.json();
+                jsonFile.then(jsonResult => {
+                    jsonResult;
+                    // console.log({jsonResult});
+                    showBusca(jsonResult);
+                })
+            });
+            function showBusca (jsonResult) {
+                const nomeUser = jsonResult.login;
+                console.log(nomeUser)
+                const Mostrar = () => {
+                return <div id="test">
+                   <h1>God</h1>
+                </div>
+                }
+            }
+            
+            
+        }
+        // const ShowBusca = (jsonResult) => {
+        //     const nomeUser = jsonResult.login;
+        //     console.log(nomeUser)
+        //     return <div id="test">
+        //            <h1>God</h1>
+        //         </div>
+        // }
+
+        const App = () => {
+            return <div id="mainR">
+                    <LogoGH />
+                    <InputContainer />
+
+                </div>
+        }
+
+        const main = document.getElementById('root');
+        const root = ReactDOM.createRoot(main);
+        root.render(<App />);
+
+    </script>
+</body>
+</html>

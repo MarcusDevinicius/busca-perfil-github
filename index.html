@@ -27,14 +27,14 @@
             return <form id="form">
             <div id="input-container">
                 <input id="input-user" type="text" placeholder="Digite um usuário do Github"/>
-                <div id="lupa-container" onClick={buscarPerfil}>
+                <div id="lupa-container" onClick={BuscarPerfil}>
                     <img id="lupa" src="src/imgs/lupa-search.svg" alt="Ícone de uma lupa de pesquisa."/>
                 </div>
             </div>
         </form>
         }
 
-        function buscarPerfil() {
+        const BuscarPerfil = () => {
             const input = document.getElementById('input-user');
             const userName = input.value;
             fetch(`https://api.github.com/users/${{userName}.userName}`)
@@ -48,14 +48,11 @@
             });
             function showBusca (jsonResult) {
                 const nomeUser = jsonResult.login;
-                console.log(nomeUser)
-                const Mostrar = () => {
+                console.log(nomeUser, 'Oi')
                 return <div id="test">
-                   <h1>God</h1>
+                   <h1></h1>
                 </div>
-                }
             }
-            
             
         }
         // const ShowBusca = (jsonResult) => {
